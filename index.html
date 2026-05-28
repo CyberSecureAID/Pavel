@@ -7,156 +7,273 @@
   <meta name="description" content="MAXCON – Expert masonry, restoration, demolition, concrete & metal works in the Greater Toronto Area. 15+ years of excellence." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- LOADER -->
   <div id="loader">
-    <div class="loader-bar"></div>
-    <div class="loader-text">MAXCON</div>
+    <canvas id="loaderCanvas"></canvas>
+    <div class="loader-inner">
+      <div class="loader-logo">MAXCON</div>
+      <div class="loader-progress">
+        <div class="loader-fill" id="loaderFill"></div>
+      </div>
+      <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
   </div>
 
   <!-- CURSOR -->
-  <div id="cursor"></div>
-  <div id="cursor-follower"></div>
+  <div id="cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-text"></div>
+  </div>
 
   <!-- NAV -->
   <nav id="navbar">
-    <div class="nav-inner">
+    <div class="nav-container">
       <a href="#hero" class="nav-logo">
-        <span class="logo-m">M</span>AXCON
+        <span class="logo-mark">M</span>AXCON
+        <span class="logo-sub">INC.</span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#services" class="nav-link">Services</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#stats" class="nav-link">Why Us</a></li>
-        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-        <li><a href="#contact" class="nav-link nav-cta">Get a Quote</a></li>
+        <li><a href="#services" class="nav-link" data-text="Services">Services</a></li>
+        <li><a href="#about" class="nav-link" data-text="About">About</a></li>
+        <li><a href="#stats" class="nav-link" data-text="Results">Results</a></li>
+        <li><a href="#testimonials" class="nav-link" data-text="Clients">Clients</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a></li>
       </ul>
+      <button class="hamburger" id="hamburger">
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+      </button>
     </div>
   </nav>
 
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mm-inner">
+      <a href="#services" class="mm-link">Services</a>
+      <a href="#about" class="mm-link">About</a>
+      <a href="#stats" class="mm-link">Results</a>
+      <a href="#testimonials" class="mm-link">Clients</a>
+      <a href="#contact" class="mm-link mm-cta">Get a Quote →</a>
+    </div>
+    <div class="mm-footer">
+      <span>+1 (416) 519-5422</span>
+      <span>info@maxconinc.com</span>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-bg">
-      <div class="hero-overlay"></div>
-      <div class="hero-grid"></div>
-      <div class="particles" id="particles"></div>
-    </div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-video-overlay"></div>
+
     <div class="hero-content">
-      <div class="hero-label reveal-up">Toronto's Premier Construction Specialists</div>
-      <h1 class="hero-title reveal-up">
-        <span class="line">Building</span>
-        <span class="line accent-line">the Future,</span>
-        <span class="line">Restoring</span>
-        <span class="line accent-line">the Past.</span>
-      </h1>
-      <p class="hero-sub reveal-up">Over 15 years transforming the Greater Toronto Area — one project at a time. Masonry, restoration, demolition, concrete & metal works.</p>
-      <div class="hero-actions reveal-up">
-        <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
-        <a href="#services" class="btn btn-ghost">Our Services</a>
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span>Toronto's Premier Construction Specialists</span>
+        <span class="eyebrow-dot">•</span>
+        <span>Est. 2009</span>
       </div>
-      <div class="hero-contact reveal-up">
-        <a href="tel:4165195422" class="hero-phone">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.17 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-          +1 (416) 519-5422
-        </a>
-        <span class="hero-hours">Mon–Fri · 8AM–4PM</span>
+
+      <h1 class="hero-title">
+        <span class="h-line" data-delay="0">
+          <em class="outline-text">Building</em>
+        </span>
+        <span class="h-line" data-delay="1">
+          the Future,
+        </span>
+        <span class="h-line" data-delay="2">
+          <em class="outline-text">Restoring</em>
+        </span>
+        <span class="h-line" data-delay="3">
+          the Past.
+        </span>
+      </h1>
+
+      <div class="hero-bottom">
+        <div class="hero-desc">
+          <p>Over 15 years transforming the Greater Toronto Area. Masonry, restoration, demolition, concrete & metal works — at any scale.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-hero-primary">
+              <span>Free Quote</span>
+              <div class="btn-fill"></div>
+            </a>
+            <a href="#services" class="btn-hero-ghost">View Services ↓</a>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <a href="tel:4165195422" class="meta-phone">
+            <div class="phone-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.17 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <span class="phone-label">Call Us Now</span>
+              <span class="phone-num">+1 (416) 519-5422</span>
+            </div>
+          </a>
+          <div class="meta-hours">
+            <div class="hours-dot"></div>
+            Mon–Fri · 8AM–4PM
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hero-scroll">
+
+    <div class="hero-scroll-indicator">
+      <div class="scroll-track">
+        <div class="scroll-thumb"></div>
+      </div>
       <span>Scroll</span>
-      <div class="scroll-line"></div>
+    </div>
+
+    <div class="hero-ticker">
+      <div class="ticker-inner" id="ticker">
+        <span>15+ YEARS OF EXCELLENCE</span>
+        <span class="sep">◆</span>
+        <span>500+ PROJECTS COMPLETED</span>
+        <span class="sep">◆</span>
+        <span>GREATER TORONTO AREA</span>
+        <span class="sep">◆</span>
+        <span>MASONRY · RESTORATION · DEMOLITION · CONCRETE · METAL</span>
+        <span class="sep">◆</span>
+        <span>15+ YEARS OF EXCELLENCE</span>
+        <span class="sep">◆</span>
+        <span>500+ PROJECTS COMPLETED</span>
+        <span class="sep">◆</span>
+        <span>GREATER TORONTO AREA</span>
+        <span class="sep">◆</span>
+        <span>MASONRY · RESTORATION · DEMOLITION · CONCRETE · METAL</span>
+        <span class="sep">◆</span>
+      </div>
     </div>
   </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Building Restoration</span><span class="msep">—</span>
+      <span>New Masonry</span><span class="msep">—</span>
+      <span>Demolition</span><span class="msep">—</span>
+      <span>Concrete Works</span><span class="msep">—</span>
+      <span>Metal Works</span><span class="msep">—</span>
+      <span>Building Restoration</span><span class="msep">—</span>
+      <span>New Masonry</span><span class="msep">—</span>
+      <span>Demolition</span><span class="msep">—</span>
+      <span>Concrete Works</span><span class="msep">—</span>
+      <span>Metal Works</span><span class="msep">—</span>
+    </div>
+  </div>
 
   <!-- SERVICES -->
   <section id="services">
     <div class="container">
-      <div class="section-header">
-        <div class="section-label reveal-up">What We Do</div>
-        <h2 class="section-title reveal-up">Our <span class="accent">Expertise</span></h2>
-        <p class="section-desc reveal-up">From planning to completion — we deliver top-quality solutions regardless of scale.</p>
+      <div class="section-head">
+        <div class="sh-label">What We Do</div>
+        <div class="sh-title-wrap">
+          <h2 class="sh-title">Our <span class="accent">Expert</span><br>Services</h2>
+          <p class="sh-desc">From planning to completion — delivering top-quality solutions regardless of scale across the Greater Toronto Area.</p>
+        </div>
       </div>
-      <div class="services-grid">
 
-        <div class="service-card reveal-card" data-index="0">
-          <div class="service-number">01</div>
-          <div class="service-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="4" y="18" width="32" height="18" rx="1"/>
-              <path d="M4 18L20 6l16 12"/>
-              <rect x="14" y="26" width="12" height="10"/>
+      <div class="services-layout">
+
+        <div class="service-featured reveal" data-d="0">
+          <div class="sf-num">01</div>
+          <div class="sf-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M8 56h48M12 56V28L32 12l20 16v28"/>
+              <rect x="22" y="38" width="20" height="18"/>
+              <path d="M22 38v-6h20v6"/>
+              <circle cx="32" cy="20" r="3"/>
+              <path d="M18 28h4M42 28h4M18 36h4M42 36h4"/>
             </svg>
           </div>
-          <h3>Building Restoration</h3>
-          <p>Our restoration experts are highly competent to tackle a wide range of disaster restoration scenarios, breathing new life into existing structures.</p>
-          <div class="service-arrow">→</div>
+          <div class="sf-body">
+            <h3>Building Restoration</h3>
+            <p>Our restoration experts tackle a wide range of disaster restoration scenarios, breathing new life into existing structures with precision and care.</p>
+            <a href="#contact" class="sf-link">Start a project <span>→</span></a>
+          </div>
         </div>
 
-        <div class="service-card reveal-card" data-index="1">
-          <div class="service-number">02</div>
-          <div class="service-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M8 32L32 8M16 8h16v16"/>
-              <path d="M6 20l8 8-4 4H4v-6l2-6z"/>
+        <div class="service-featured reveal" data-d="1">
+          <div class="sf-num">02</div>
+          <div class="sf-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 52L52 12M20 12h32v32"/>
+              <path d="M8 36l12 12-6 4H4v-8l4-8z"/>
+              <path d="M24 28l8-8M32 40l8-8"/>
             </svg>
           </div>
-          <h3>Demolition</h3>
-          <p>We are experts in demolition services and have completed a large number of projects with precision, safety, and efficiency.</p>
-          <div class="service-arrow">→</div>
+          <div class="sf-body">
+            <h3>Demolition</h3>
+            <p>Experts in demolition services — completing a large number of projects with precision, safety, and maximum efficiency.</p>
+            <a href="#contact" class="sf-link">Start a project <span>→</span></a>
+          </div>
         </div>
 
-        <div class="service-card reveal-card" data-index="2">
-          <div class="service-number">03</div>
-          <div class="service-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M4 36h32M8 36V16l12-8 12 8v20"/>
-              <rect x="15" y="22" width="10" height="14"/>
-              <rect x="12" y="14" width="16" height="4"/>
+        <div class="service-featured reveal" data-d="2">
+          <div class="sf-num">03</div>
+          <div class="sf-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="8" y="30" width="48" height="6" rx="1"/>
+              <rect x="14" y="36" width="36" height="6" rx="1"/>
+              <rect x="20" y="42" width="24" height="6" rx="1"/>
+              <path d="M16 30V20l16-8 16 8v10"/>
+              <rect x="26" y="20" width="12" height="10"/>
             </svg>
           </div>
-          <h3>New Masonry</h3>
-          <p>From planning new construction projects to small masonry repairs — we pride ourselves on delivering top-quality solutions at every scale.</p>
-          <div class="service-arrow">→</div>
+          <div class="sf-body">
+            <h3>New Masonry</h3>
+            <p>From planning new construction projects to small masonry repairs — delivering top-quality solutions that stand the test of time.</p>
+            <a href="#contact" class="sf-link">Start a project <span>→</span></a>
+          </div>
         </div>
 
-        <div class="service-card reveal-card" data-index="3">
-          <div class="service-number">04</div>
-          <div class="service-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="4" y="10" width="32" height="20" rx="1"/>
-              <path d="M4 20h32M14 10v20M26 10v20"/>
+        <div class="service-featured reveal" data-d="3">
+          <div class="sf-num">04</div>
+          <div class="sf-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="8" y="20" width="48" height="28" rx="2"/>
+              <path d="M8 32h48M20 20v28M32 20v28M44 20v28"/>
+              <path d="M14 26h4M14 38h4M46 26h4M46 38h4"/>
             </svg>
           </div>
-          <h3>Concrete</h3>
-          <p>We've gained a reputation as problem solvers — collaborating through each stage of the construction process to deliver durable, precise results.</p>
-          <div class="service-arrow">→</div>
+          <div class="sf-body">
+            <h3>Concrete</h3>
+            <p>Problem solvers collaborating through each stage of construction to deliver durable, precise concrete results every time.</p>
+            <a href="#contact" class="sf-link">Start a project <span>→</span></a>
+          </div>
         </div>
 
-        <div class="service-card reveal-card" data-index="4">
-          <div class="service-number">05</div>
-          <div class="service-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M8 8h24v4H8zM8 18h24v4H8zM8 28h24v4H8z"/>
-              <path d="M14 12v6M26 12v6M14 22v6M26 22v6"/>
+        <div class="service-featured reveal" data-d="4">
+          <div class="sf-num">05</div>
+          <div class="sf-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M10 18h44v6H10zM10 30h44v6H10zM10 42h44v6H10z"/>
+              <path d="M20 24v6M32 24v6M44 24v6M20 36v6M32 36v6M44 36v6"/>
+              <circle cx="14" cy="21" r="1.5" fill="currentColor"/>
+              <circle cx="50" cy="45" r="1.5" fill="currentColor"/>
             </svg>
           </div>
-          <h3>Metal Works</h3>
-          <p>We design and manage residential, commercial, and industrial miscellaneous metal projects throughout the Greater Toronto Area.</p>
-          <div class="service-arrow">→</div>
+          <div class="sf-body">
+            <h3>Metal Works</h3>
+            <p>Designing and managing residential, commercial, and industrial miscellaneous metal projects throughout the Greater Toronto Area.</p>
+            <a href="#contact" class="sf-link">Start a project <span>→</span></a>
+          </div>
         </div>
 
-        <div class="service-card service-card--cta reveal-card" data-index="5">
-          <div class="cta-inner">
-            <h3>No Project Too Big or Too Small</h3>
-            <p>From concept to completion — the same level of expertise on every project.</p>
-            <a href="#contact" class="btn btn-primary">Start Today</a>
+        <div class="service-cta reveal" data-d="5">
+          <div class="scta-bg"></div>
+          <div class="scta-inner">
+            <div class="scta-label">No project too big or small</div>
+            <h3>Ready to Build?</h3>
+            <p>From concept to completion — the same expertise on every project.</p>
+            <a href="#contact" class="btn-primary">Get Free Quote</a>
           </div>
         </div>
 
@@ -166,79 +283,126 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="about-bg-text">MAXCON</div>
-    <div class="container about-grid">
-      <div class="about-visual reveal-left">
-        <div class="about-img-wrap">
-          <div class="about-img-placeholder">
-            <div class="img-overlay-text">15+<br><span>Years</span></div>
-          </div>
-          <div class="about-badge">
-            <span class="badge-num">GTA</span>
-            <span class="badge-label">Based</span>
-          </div>
-        </div>
-      </div>
-      <div class="about-text reveal-right">
-        <div class="section-label">Who We Are</div>
-        <h2 class="section-title">We've Been <span class="accent">Building</span> For Over 15 Years</h2>
-        <p>At Maxcon, we believe that no project is too big or too small. Our extensive experience and skilled team of professionals equip us to handle a wide range of construction projects — from small-scale renovations to large commercial developments.</p>
-        <p>Our attention to detail, commitment to quality craftsmanship, and dedication to client satisfaction remain unwavering. From concept to completion, we bring the same level of expertise, dedication, and integrity to every project.</p>
-        <div class="about-values">
-          <div class="value-item">
-            <div class="value-icon">⬡</div>
-            <div>
-              <strong>Skilled Team</strong>
-              <span>Dedicated experts focused on your satisfaction</span>
+    <canvas id="aboutCanvas"></canvas>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="av-frame">
+            <div class="av-image">
+              <div class="av-placeholder">
+                <div class="avp-content">
+                  <div class="avp-year">15<span>+</span></div>
+                  <div class="avp-label">Years of<br>Excellence</div>
+                </div>
+                <div class="avp-grid"></div>
+              </div>
             </div>
-          </div>
-          <div class="value-item">
-            <div class="value-icon">⬡</div>
-            <div>
-              <strong>People & Technology</strong>
-              <span>Experience meets modern construction methods</span>
+            <div class="av-badge">
+              <div class="badge-ring"></div>
+              <div class="badge-content">
+                <span class="bn">GTA</span>
+                <span class="bl">Based</span>
+              </div>
             </div>
-          </div>
-          <div class="value-item">
-            <div class="value-icon">⬡</div>
-            <div>
-              <strong>Any Scale</strong>
-              <span>Houses to high-rises — handled with equal care</span>
+            <div class="av-tag">
+              <span>Est. 2009</span>
+              <span>North York, ON</span>
             </div>
           </div>
         </div>
-        <a href="#contact" class="btn btn-primary">Work With Us</a>
+
+        <div class="about-text reveal-right">
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title">Built on <span class="accent">15 Years</span><br>of Craft</h2>
+          <p>At Maxcon, no project is too big or too small. Our extensive experience and skilled team equip us to handle a wide range of construction projects — from small-scale renovations to large commercial developments.</p>
+          <p>Our attention to detail, commitment to quality craftsmanship, and dedication to client satisfaction remain unwavering from concept to completion.</p>
+
+          <div class="about-pillars">
+            <div class="pillar">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <strong>Skilled Team</strong>
+                <span>Dedicated experts focused on your satisfaction</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div>
+                <strong>People & Technology</strong>
+                <span>Experience meets modern construction methods</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div>
+                <strong>Any Scale</strong>
+                <span>Houses to high-rises — handled with equal care</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn-primary">Work With Us →</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- STATS -->
   <section id="stats">
-    <div class="stats-bg"></div>
+    <div class="stats-bg-canvas">
+      <canvas id="statsCanvas"></canvas>
+    </div>
     <div class="container">
+      <div class="stats-header">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Numbers That <span class="accent">Speak</span></h2>
+      </div>
       <div class="stats-grid">
-        <div class="stat-item reveal-up">
-          <div class="stat-num" data-target="15">0</div>
-          <div class="stat-unit">+</div>
-          <div class="stat-label">Years of Experience</div>
+        <div class="stat-card reveal" data-d="0">
+          <div class="stat-inner">
+            <div class="stat-num-wrap">
+              <span class="stat-num" data-target="15">0</span>
+              <span class="stat-plus">+</span>
+            </div>
+            <div class="stat-label">Years of Experience</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="--w:75%"></div></div>
+          </div>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item reveal-up">
-          <div class="stat-num" data-target="500">0</div>
-          <div class="stat-unit">+</div>
-          <div class="stat-label">Projects Completed</div>
+        <div class="stat-card reveal" data-d="1">
+          <div class="stat-inner">
+            <div class="stat-num-wrap">
+              <span class="stat-num" data-target="500">0</span>
+              <span class="stat-plus">+</span>
+            </div>
+            <div class="stat-label">Projects Completed</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="--w:90%"></div></div>
+          </div>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item reveal-up">
-          <div class="stat-num" data-target="5">0</div>
-          <div class="stat-unit"></div>
-          <div class="stat-label">Core Services</div>
+        <div class="stat-card reveal" data-d="2">
+          <div class="stat-inner">
+            <div class="stat-num-wrap">
+              <span class="stat-num" data-target="5">0</span>
+              <span class="stat-plus"></span>
+            </div>
+            <div class="stat-label">Core Services</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="--w:50%"></div></div>
+          </div>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item reveal-up">
-          <div class="stat-num" data-target="100">0</div>
-          <div class="stat-unit">%</div>
-          <div class="stat-label">Client Satisfaction</div>
+        <div class="stat-card reveal" data-d="3">
+          <div class="stat-inner">
+            <div class="stat-num-wrap">
+              <span class="stat-num" data-target="100">0</span>
+              <span class="stat-plus">%</span>
+            </div>
+            <div class="stat-label">Client Satisfaction</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="--w:100%"></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -247,66 +411,77 @@
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
-      <div class="section-header">
-        <div class="section-label reveal-up">Client Stories</div>
-        <h2 class="section-title reveal-up">What They <span class="accent">Say</span></h2>
+      <div class="section-head centered">
+        <div class="section-label">Client Stories</div>
+        <h2 class="section-title">What They <span class="accent">Say</span></h2>
       </div>
-      <div class="testimonials-track" id="testimonialsTrack">
-        <div class="testimonial-slide active">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">Excellent experience dealing with Pavel Portelles and his team. They were patient and attentive throughout both the planning and execution stages of the new concrete and sod landscaping process.</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">JS</div>
-            <div>
-              <strong>John Smith</strong>
-              <span>Residential Client</span>
+
+      <div class="testi-wrap">
+        <div class="testi-track" id="testiTrack">
+          <div class="testi-slide active">
+            <div class="testi-mark">"</div>
+            <p>Excellent experience dealing with Pavel Portelles and his team. They were patient and attentive throughout both the planning and execution stages of the new concrete and sod landscaping process.</p>
+            <div class="testi-author">
+              <div class="ta-avatar">JS</div>
+              <div class="ta-info">
+                <strong>John Smith</strong>
+                <span>Residential Client · Toronto</span>
+              </div>
+              <div class="ta-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="testi-slide">
+            <div class="testi-mark">"</div>
+            <p>Pavel and company did my front and backyard concrete in a professional way. They did an excellent job in both areas. I am really happy with their work and highly recommend them.</p>
+            <div class="testi-author">
+              <div class="ta-avatar">D</div>
+              <div class="ta-info">
+                <strong>David</strong>
+                <span>Homeowner · Toronto</span>
+              </div>
+              <div class="ta-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="testi-slide">
+            <div class="testi-mark">"</div>
+            <p>My experience with Pavel and his team was excellent. They were very polite, hard working and honest. Truly I was very impressed to see their dedication. Satisfied with his job!</p>
+            <div class="testi-author">
+              <div class="ta-avatar">M</div>
+              <div class="ta-info">
+                <strong>Mark</strong>
+                <span>Front Porch Project · GTA</span>
+              </div>
+              <div class="ta-stars">★★★★★</div>
             </div>
           </div>
         </div>
-        <div class="testimonial-slide">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">Pavel and company did my front and backyard concrete in a professional way. They did an excellent job in both areas. I am really happy with their work and highly recommend them.</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">D</div>
-            <div>
-              <strong>David</strong>
-              <span>Homeowner, Toronto</span>
-            </div>
-          </div>
+
+        <div class="testi-nav">
+          <button class="tn-btn" id="tPrev">←</button>
+          <div class="tn-dots" id="tDots"></div>
+          <button class="tn-btn" id="tNext">→</button>
         </div>
-        <div class="testimonial-slide">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">My experience with Pavel and his team was excellent. They were very polite, hard working and honest. Truly I was very impressed to see their dedication. Satisfied with his job!</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div>
-              <strong>Mark</strong>
-              <span>Front Porch Project</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-controls">
-        <button class="t-btn" id="tPrev" aria-label="Previous">←</button>
-        <div class="t-dots" id="tDots"></div>
-        <button class="t-btn" id="tNext" aria-label="Next">→</button>
       </div>
     </div>
   </section>
 
   <!-- CTA BAND -->
   <section id="cta-band">
-    <div class="cta-band-inner">
-      <div class="cta-band-text reveal-up">
-        <h2>Ready to Start Your Project?</h2>
-        <p>Schedule a free consultation — no strings attached.</p>
-      </div>
-      <div class="cta-band-actions reveal-up">
-        <a href="tel:4165195422" class="btn btn-primary">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.17 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-          Call Now
-        </a>
-        <a href="mailto:info@maxconinc.com" class="btn btn-ghost">Email Us</a>
+    <canvas id="ctaCanvas"></canvas>
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text reveal">
+          <div class="section-label">Free Consultation</div>
+          <h2>Ready to Start<br><span class="accent">Your Project?</span></h2>
+          <p>No strings attached — just expert advice.</p>
+        </div>
+        <div class="cta-actions reveal" data-d="1">
+          <a href="tel:4165195422" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.17 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+            Call Now
+          </a>
+          <a href="mailto:info@maxconinc.com" class="btn-outline">Email Us</a>
+        </div>
       </div>
     </div>
   </section>
@@ -314,78 +489,81 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <div class="section-header">
-        <div class="section-label reveal-up">Get In Touch</div>
-        <h2 class="section-title reveal-up">Contact <span class="accent">Us</span></h2>
+      <div class="section-head">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Contact <span class="accent">Us</span></h2>
       </div>
-      <div class="contact-grid">
-        <div class="contact-info reveal-left">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+
+      <div class="contact-layout">
+        <div class="contact-left reveal-left">
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
               <strong>Address</strong>
               <span>37 Kodiak Cres, Unit 11<br>North York, ON, M3J 3E5</span>
             </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.17 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.17 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
             </div>
             <div>
               <strong>Phone</strong>
               <a href="tel:4165195422">+1 (416) 519-5422</a>
             </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
               <strong>Email</strong>
               <a href="mailto:info@maxconinc.com">info@maxconinc.com</a>
             </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
               <strong>Office Hours</strong>
-              <span>Mon–Fri: 8:00am – 4:00pm<br>Sat–Sun: Closed</span>
+              <span>Mon–Fri: 8:00AM – 4:00PM<br>Sat–Sun: Closed</span>
             </div>
           </div>
-          <div class="contact-social">
-            <a href="https://www.facebook.com/profile.php?id=100064724962367" target="_blank" class="social-link" aria-label="Facebook">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+
+          <div class="ci-socials">
+            <a href="https://www.facebook.com/profile.php?id=100064724962367" target="_blank" class="ci-social">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             </a>
-            <a href="https://twitter.com/maxconinc" target="_blank" class="social-link" aria-label="X/Twitter">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/maxconinc/" target="_blank" class="social-link" aria-label="LinkedIn">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="https://www.linkedin.com/company/maxconinc/" target="_blank" class="ci-social">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
         </div>
+
         <div class="contact-form reveal-right">
           <form id="contactForm" novalidate>
             <div class="form-row">
-              <div class="form-group">
-                <input type="text" name="name" id="name" placeholder=" " required />
-                <label for="name">Your Name</label>
+              <div class="form-field">
+                <input type="text" name="name" id="fname" placeholder=" " required />
+                <label for="fname">Your Name</label>
+                <div class="field-line"></div>
               </div>
-              <div class="form-group">
-                <input type="email" name="email" id="email" placeholder=" " required />
-                <label for="email">Email Address</label>
+              <div class="form-field">
+                <input type="email" name="email" id="femail" placeholder=" " required />
+                <label for="femail">Email Address</label>
+                <div class="field-line"></div>
               </div>
             </div>
-            <div class="form-group">
-              <input type="tel" name="phone" id="phone" placeholder=" " />
-              <label for="phone">Phone Number</label>
+            <div class="form-field">
+              <input type="tel" name="phone" id="fphone" placeholder=" " />
+              <label for="fphone">Phone Number</label>
+              <div class="field-line"></div>
             </div>
-            <div class="form-group">
-              <select name="service" id="service" required>
+            <div class="form-field">
+              <select name="service" id="fservice" required>
                 <option value="" disabled selected></option>
                 <option value="restoration">Building Restoration</option>
                 <option value="demolition">Demolition</option>
@@ -394,15 +572,18 @@
                 <option value="metal">Metal Works</option>
                 <option value="other">Other</option>
               </select>
-              <label for="service">Service Needed</label>
+              <label for="fservice">Service Needed</label>
+              <div class="field-line"></div>
             </div>
-            <div class="form-group">
-              <textarea name="message" id="message" rows="4" placeholder=" " required></textarea>
-              <label for="message">Project Details</label>
+            <div class="form-field">
+              <textarea name="message" id="fmessage" rows="4" placeholder=" " required></textarea>
+              <label for="fmessage">Project Details</label>
+              <div class="field-line"></div>
             </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span class="btn-text">Send Message</span>
-              <span class="btn-loading">Sending…</span>
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span class="bs-text">Send Message</span>
+              <span class="bs-loading" style="display:none">Sending…</span>
+              <div class="bs-fill"></div>
             </button>
             <div class="form-success" id="formSuccess">
               ✓ Message sent! We'll be in touch within 24 hours.
@@ -415,21 +596,21 @@
 
   <!-- FOOTER -->
   <footer id="footer">
-    <div class="footer-top">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">MAXCON</div>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="ft-brand">
+          <div class="ft-logo">MAXCON <span>INC.</span></div>
           <p>Building the Future,<br>Restoring the Past.</p>
-          <div class="footer-social">
-            <a href="https://www.facebook.com/profile.php?id=100064724962367" target="_blank" aria-label="Facebook">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          <div class="ft-socials">
+            <a href="https://www.facebook.com/profile.php?id=100064724962367" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             </a>
-            <a href="https://www.linkedin.com/company/maxconinc/" target="_blank" aria-label="LinkedIn">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="https://www.linkedin.com/company/maxconinc/" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
         </div>
-        <div class="footer-links">
+        <div class="ft-links">
           <h4>Services</h4>
           <ul>
             <li><a href="#services">Building Restoration</a></li>
@@ -439,7 +620,7 @@
             <li><a href="#services">Metal Works</a></li>
           </ul>
         </div>
-        <div class="footer-links">
+        <div class="ft-links">
           <h4>Company</h4>
           <ul>
             <li><a href="#about">About Us</a></li>
@@ -448,18 +629,16 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
-        <div class="footer-contact-info">
+        <div class="ft-contact">
           <h4>Get In Touch</h4>
           <p>37 Kodiak Cres, Unit 11<br>North York, ON, M3J 3E5</p>
           <a href="tel:4165195422">+1 (416) 519-5422</a>
           <a href="mailto:info@maxconinc.com">info@maxconinc.com</a>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
+      <div class="footer-bottom">
         <span>© 2026 MAXCON Inc. All rights reserved.</span>
-        <span>37 Kodiak Cres, North York, ON</span>
+        <span>North York, ON · GTA</span>
       </div>
     </div>
   </footer>
