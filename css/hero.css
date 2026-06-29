@@ -1641,7 +1641,8 @@ img { display: block; max-width: 100%; }
   right: 1.6rem;
   z-index: 8999;
   width: 360px;
-  max-height: 520px;
+  height: 520px;
+  max-height: calc(100vh - 120px);
   background: var(--c-navy-dark);
   border: 1px solid var(--c-line);
   border-radius: 16px;
